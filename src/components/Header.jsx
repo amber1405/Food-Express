@@ -2,11 +2,15 @@ import { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const isOnline = useOnlineStatus();
+
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <div className="flex justify-between items-center shadow-sm shadow-slate-200">
       <div id="logo-container">
@@ -23,9 +27,10 @@ const Header = () => {
           <li className="cursor-pointer hover:text-orange-500 ease-in-out duration-300">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>
-            <Link to="/cart">
+          <li >
+            <Link to="/cart" className="flex gap-1">
               <FaShoppingCart className="h-7 w-6 text-slate-700 cursor-pointer hover:text-orange-500 ease-in-out duration-300" />
+              ({cartItems.length})
             </Link>
           </li>
           <li>

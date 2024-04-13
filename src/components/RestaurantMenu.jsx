@@ -12,13 +12,16 @@ import { GoDotFill } from "react-icons/go";
 import { IoBicycle } from "react-icons/io5";
 import { FaRegCaretSquareUp } from "react-icons/fa";
 import { LuSquareDot } from "react-icons/lu";
+import { PiShootingStarFill } from "react-icons/pi";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 useParams;
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const [resInfo, setResInfo] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchMenu();
   }, []);
@@ -52,7 +55,9 @@ const RestaurantMenu = () => {
     setMenuItems(uniqueMenuItems);
   };
   if (resInfo === null) return <Shimmer />;
-
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
   const {
     name,
     cuisines,
@@ -107,11 +112,19 @@ const RestaurantMenu = () => {
                 key={item?.id}
               >
                 <div className="flex flex-col self-start overflow-hidden h-auto gap-1">
-                  <h1>
+                  <h1 className="flex gap-1 items-center">
                     {item?.isVeg ? (
                       <LuSquareDot className="text-green-600 text-xl" />
                     ) : (
                       <FaRegCaretSquareUp className="text-red-600 text-lg" />
+                    )}
+                    {item?.isBestseller ? (
+                      <p className="flex items-center font-semibold text-base text-orange-500">
+                        <PiShootingStarFill />
+                        Bestseller
+                      </p>
+                    ) : (
+                      ""
                     )}
                   </h1>
                   <h3 className="font-semibold text-xl text-slate-800">
@@ -137,8 +150,10 @@ const RestaurantMenu = () => {
                       alt={item?.name}
                     />
                   )}
-                  <button className="font-bold text-green-600 shadow-sm rounded-xl bg-white border-2 mb-5 border-slate-300 w-32 p-1">
-                    {" "}
+                  <button
+                    className="font-bold text-green-600 shadow-sm rounded-xl bg-white border-2 mb-5 border-slate-300 w-32 p-1"
+                    onClick={() => handleAddItem(item)}
+                  >
                     ADD +
                   </button>
                 </div>
