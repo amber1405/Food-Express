@@ -1,12 +1,6 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import {
-  IMAGE_CDN_URL,
-  MENU_ITEM_TYPE_KEY,
-  MENU_URL,
-  RESTAURANT_TYPE_KEY,
-} from "../utils/constants";
+import { IMAGE_CDN_URL } from "../utils/constants";
 import { FaStar } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import { IoBicycle } from "react-icons/io5";
@@ -15,57 +9,18 @@ import { LuSquareDot } from "react-icons/lu";
 import { PiShootingStarFill } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-useParams;
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [resInfo, setResInfo] = useState(null);
-  const [menuItems, setMenuItems] = useState([]);
+  const [resInfo, menuItems] = useRestaurantMenu(resId);
   const dispatch = useDispatch();
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_URL + resId);
-    const json = await data.json();
-    console.log(json);
-    // setResInfo(json.data);
-    const restaurantData =
-      json?.data?.cards
-        ?.map((x) => x.card)
-        ?.find((x) => x && x.card["@type"] === RESTAURANT_TYPE_KEY)?.card
-        ?.info || null;
-    setResInfo(restaurantData);
 
-    const menuItemsData =
-      json?.data?.cards
-        .find((x) => x.groupedCard)
-        ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((x) => x.card?.card)
-        ?.filter((x) => x["@type"] == MENU_ITEM_TYPE_KEY)
-        ?.map((x) => x.itemCards)
-        .flat()
-        .map((x) => x.card?.info) || [];
-
-    const uniqueMenuItems = [];
-    menuItemsData.forEach((item) => {
-      if (!uniqueMenuItems.find((x) => x.id === item.id)) {
-        uniqueMenuItems.push(item);
-      }
-    });
-    setMenuItems(uniqueMenuItems);
-  };
   if (resInfo === null) return <Shimmer />;
   const handleAddItem = (item) => {
     dispatch(addItem(item));
   };
-  const {
-    name,
-    cuisines,
-    areaName,
-    avgRating,
-    totalRatingsString,
-    costForTwoMessage,
-  } = resInfo;
+  const { name, cuisines, areaName, avgRating, totalRatingsString, costForTwoMessage } = resInfo;
   const { slaString, lastMileTravelString } = resInfo.sla;
 
   return (
