@@ -9,12 +9,10 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  console.log(listOfRestaurants);
   useEffect(() => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    // const data = await fetch("https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.87560&lng=80.91150&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
@@ -25,8 +23,6 @@ const Body = () => {
     setFilteredRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    // setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    // setFilteredRestaurants( json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants );
   };
 
   const onlineStatus = useOnlineStatus();
