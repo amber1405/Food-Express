@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  // console.log(cartItems);
+  console.log(cartItems);
 
   const dispatch = useDispatch();
 
@@ -28,8 +28,8 @@ const Cart = () => {
             </Link>
           </div>
         )}
-        {cartItems?.map((item, index) => (
-          <MenuItemList key={index} item={item} />
+        {cartItems?.map((item) => (
+          <MenuItemList key={item.product.id} item={item.product} />
         ))}
       </div>
       <button
