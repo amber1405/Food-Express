@@ -19,6 +19,13 @@ const useRestaurantMenu = (resId) => {
         ?.info || null;
     setResInfo(restaurantData);
 
+    // console.log(
+    //   json?.data?.cards
+    //     .find((x) => x.groupedCard)
+    //     ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((x) => x.card?.card)
+    //     ?.filter((x) => x["@type"] == MENU_ITEM_TYPE_KEY)
+    // );
+
     const menuItemsData =
       json?.data?.cards
         .find((x) => x.groupedCard)
@@ -35,9 +42,10 @@ const useRestaurantMenu = (resId) => {
       }
     });
     setMenuItems(uniqueMenuItems);
+    // setMenuItems(menuItemsData);
   };
 
-  return [resInfo,menuItems];
+  return [resInfo, menuItems];
 };
 
 export default useRestaurantMenu;

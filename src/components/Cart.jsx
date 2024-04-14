@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const Cart = () => {
 
   return (
     <div className="flex flex-col items-center m-4 p-4">
-      <div className="text-center font-bold text-2xl">Cart</div>
+      
       <div className="w-3/4 ">
         {cartItems?.length === 0 && (
           <div className="flex flex-col items-center gap-3">
