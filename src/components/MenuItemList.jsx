@@ -84,17 +84,11 @@ const MenuItemList = ({ item }) => {
                 </button>
               </div>
             ) : (
-              <button className="" onClick={() => handleAddItem(item)}>
+              <button className="w-32" onClick={() => handleAddItem(item)}>
                 ADD
               </button>
             )}
           </div>
-          {/* <button
-            className="absolute -translate-x-1/2 -translate-y-4 font-bold text-lg text-green-600 shadow-sm rounded-xl bg-white border-2 border-slate-300 w-28"
-            onClick={() => handleAddItem(item)}
-          >
-            ADD
-          </button> */}
         </div>
       </div>
     </div>
