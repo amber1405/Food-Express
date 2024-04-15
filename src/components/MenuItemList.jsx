@@ -19,7 +19,7 @@ const MenuItemList = ({ item }) => {
   };
   return (
     <div
-      className="flex justify-between items-center border-b-2 pt-4 pb-0 gap-5 "
+      className="flex justify-between items-center border-b-2 pt-4 pb-1 gap-5 "
       key={item?.id}
     >
       <div className="flex flex-col self-start overflow-hidden h-auto gap-1 w-4/5">
@@ -62,7 +62,7 @@ const MenuItemList = ({ item }) => {
           )}
         </div>
         <div>
-          <div className="absolute -translate-x-1/2 -translate-y-4 font-bold px-1 text-lg flex justify-evenly text-green-600 border-2 rounded-xl mb-5 w-32 bg-white ">
+          <div className="absolute -translate-x-1/2 -translate-y-4 font-bold px-1 text-lg flex justify-evenly text-green-600 border-2 rounded-xl mb-5 w-32 bg-white">
             {product && product.product.id === item.id ? (
               <div className="flex justify-evenly">
                 <button

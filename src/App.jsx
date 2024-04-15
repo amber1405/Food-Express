@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
-import Footer from "./components/Footer";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Suspense, lazy } from "react";
 import { Provider } from "react-redux";

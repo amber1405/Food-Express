@@ -24,7 +24,7 @@ const Cart = () => {
               You can go to home page to view more restaurants
             </p>
             <Link to="/">
-              <button className="border shadow-md bg-orange-400 text-white font-semibold text-lg p-2 px-3 m-2 rounded-xl font-mono">
+              <button className="border shadow-md bg-orange-400 text-white font-semibold text-lg p-2 px-3 m-2 rounded-sm font-mono focus:scale-95 transition-all ease-in-out duration-200">
                 See Restaurants near you
               </button>
             </Link>
@@ -35,7 +35,7 @@ const Cart = () => {
         ))}
       </div>
       <button
-        className=" p-2 m-2 bg-black text-white rounded-lg"
+        className=" p-2 m-2 bg-red-500 text-white font-serif rounded-md focus:scale-95 transition-all ease-in-out duration-200 "
         onClick={handleClearCart}
       >
         Clear Cart
